@@ -5,15 +5,25 @@ The repo is the official implementation for the paper: OLinear: A Linear Model f
 
 ## Introduction
 
-🌟 The current direct forecasting paradigm implicitly assumes independence among the target series, which contradicts the inherent inter-dependencies in real-world time series data. To address this issue, we forecast in an orthogonally transformed domain, where temporal correlations are effectively removed.
+🌟 The current temporal forecast (TF) paradigm struggles to fully exploit the forecasting potential  in the presence of entangled intra-series dependencies. 
+To address this, we propose OrthoTrans, which transforms the time domain to the orthogonally transformed domain, where temporal correlations are effectively removed.
+Notably, OrthoTrans is modular and can be integrated into existing forecasters to enhance their performance. 
+
 
 <p align="center">
 <img src="./figures/time_transformed.png" width = "800"  alt="" align=center />
 </p>
 
+In-depth ablation studies reveal that OrthoTrans promotes representation diversity and increases the rank of attention matrices in Transformer-based models.
+
+<p align="center">
+<img src="./figures/orthotrans_improve_ranks.png" width = "800"  alt="" align=center />
+</p>
+
 🏆 Our model integrates two components: 1) Cross-Series Learner (CSL): captures multivariate dependencies using a customized linear layer named **NormLin**. 2) Intra-Series Learner (ISL): models dynamics across the temporal dimension.
 
-Surprisingly, NormLin consistently outperforms the multi-head self-attention mechanism and its variants, while being more efficient. This **challenges** the necessity of Transformers in time series forecasting.
+Surprisingly, NormLin consistently outperforms the classic multi-head self-attention mechanism, while being more efficient. 
+This **challenges** the necessity of Transformers in time series forecasting. 
 
 <p align="center">
 <img src="./figures/attn_mat_normlin_weight.png" width = "800" alt="" align=center />
@@ -115,7 +125,7 @@ The proposed orthogonal transformation and NormLin module can consistently boost
 As a linear model, OLinear exhibits significantly better efficiency than the Transformer-based forecasters while achieving better performance.
 
 <p align="center">
-<img src="./figures/efficiency2.png" width = "600" alt="" align=center />
+<img src="./figures/efficiency.png" width = "600" alt="" align=center />
 </p>
 
 
